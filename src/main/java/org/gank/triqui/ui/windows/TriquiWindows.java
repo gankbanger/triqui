@@ -19,6 +19,7 @@ import lombok.Getter;
 
 public class TriquiWindows implements SuscriptorAlJuego {
 
+	private static final Color VERDE_OSCURO = new Color(56, 128, 56);
 	private JFrame frame;
 	private Triqui juego;
 
@@ -63,7 +64,7 @@ public class TriquiWindows implements SuscriptorAlJuego {
 				BotonCasilla boton = (BotonCasilla) component;
 				for (int l = 0; l < Triqui.DIMENSION_TABLERO; l++) {
 					if (boton.getFila() == lineaGanadora[l][1] && boton.getColumna() == lineaGanadora[l][0]) {
-						boton.setBackground(Color.GREEN);
+						boton.setForeground(VERDE_OSCURO);
 					}
 				}
 			}
@@ -87,7 +88,6 @@ public class TriquiWindows implements SuscriptorAlJuego {
 
 			this.addActionListener(event -> {
 				if (!juego.finJuego()) {
-
 					juego.marcar(this.columna, this.fila);
 					Casilla c = juego.obtenerCasilla(this.columna, this.fila);
 					if (c.equals(Casilla.X)) {
@@ -99,9 +99,9 @@ public class TriquiWindows implements SuscriptorAlJuego {
 					juego.nuevoJuego();
 					for (Component component : this.getParent().getComponents()) {
 						if (component instanceof BotonCasilla) {
-							BotonCasilla boton = ((BotonCasilla)component);
+							BotonCasilla boton = ((BotonCasilla) component);
 							boton.setText("");
-							boton.setBackground(new ColorUIResource(238, 138, 210));
+							boton.setForeground(Color.BLACK);
 						}
 					}
 				}
