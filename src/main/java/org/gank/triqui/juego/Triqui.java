@@ -49,7 +49,7 @@ public class Triqui {
 
             this.suscriptores.forEach(suscriptor -> suscriptor.tableroMarcado(this.siguienteTurno, i, j));
             calcularGanador();
-            
+
             if (!this.ganador.equals(Marca.VACIA)) {
                 this.suscriptores.forEach(suscriptor -> suscriptor.juegoGanado(this.ganador, this.lineaGanadora));
             } else {
@@ -57,9 +57,10 @@ public class Triqui {
             }
         }
         if (this.finJuego()) {
-            this.suscriptores.forEach(suscriptor ->{suscriptor.juegoTerminado();});
+            this.suscriptores.forEach(SuscriptorAlJuego::juegoTerminado);
         }
     }
+
     private void calcularGanador() {
         for (int i = 0; i < DIMENSION_TABLERO; i++) {
             if (!this.tablero[i][0].equals(Marca.VACIA) && this.tablero[i][0].equals(this.tablero[i][1])
@@ -95,7 +96,7 @@ public class Triqui {
         }
         if (!this.tablero[0][2].equals(Marca.VACIA) && this.tablero[0][2].equals(this.tablero[1][1])
                 && this.tablero[0][2].equals(this.tablero[2][0])) {
-            this.ganador = this.tablero[0][0];
+            this.ganador = this.tablero[0][2];
             this.lineaGanadora[0][0] = 0;
             this.lineaGanadora[0][1] = 2;
             this.lineaGanadora[1][0] = 1;

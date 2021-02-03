@@ -87,7 +87,6 @@ public class TriquiCLI implements SuscriptorAlJuego {
 
     @Override
     public void juegoTerminado() {
-        // TODO Auto-generated method stub
-
+        
     }
 }
