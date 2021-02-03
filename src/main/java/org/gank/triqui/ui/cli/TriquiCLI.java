@@ -87,6 +87,6 @@ public class TriquiCLI implements SuscriptorAlJuego {
 
     @Override
     public void juegoTerminado() {
-        
+        // No es necesario implementar
     }
 }
