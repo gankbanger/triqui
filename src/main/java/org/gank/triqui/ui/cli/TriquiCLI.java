@@ -2,27 +2,35 @@ package org.gank.triqui.ui.cli;
 
 import java.util.Scanner;
 
-import org.gank.triqui.juego.Casilla;
+import org.gank.triqui.juego.Marca;
 import org.gank.triqui.juego.SuscriptorAlJuego;
 import org.gank.triqui.juego.Triqui;
 
 public class TriquiCLI implements SuscriptorAlJuego {
+    private Triqui juego;
+
+    public Triqui getJuego() {
+        return juego;
+    }
+
+    public TriquiCLI(Triqui juego) {
+        this.juego = juego;
+    }
     public static void main(String[] args) {
-        TriquiCLI cli = new TriquiCLI();
-        Triqui juego = new Triqui();
-        juego.inscribirseNotificacionesTurnos(cli);
+        TriquiCLI cli = new TriquiCLI(new Triqui());
+        cli.getJuego().inscribirseNotificacionesTurnos(cli);
         boolean continuar = true;
 
         try (Scanner in = new Scanner(System.in)) {
-            imprimirTablero(juego);
-            while (!juego.finJuego() && continuar) {
-                jugarTurno(juego, in);
-                imprimirTablero(juego);
-                if (juego.finJuego()) {
+            imprimirTablero(cli.getJuego());
+            while (!cli.getJuego().finJuego() && continuar) {
+                jugarTurno(cli.getJuego(), in);
+                
+                if (cli.getJuego().finJuego()) {
                     continuar = continuarJugando(in);
                     if (continuar) {
-                        juego.nuevoJuego();
-                        imprimirTablero(juego);
+                        cli.getJuego().nuevoJuego();
+                        imprimirTablero(cli.getJuego());
                     }
                 }
             }
@@ -65,10 +73,21 @@ public class TriquiCLI implements SuscriptorAlJuego {
     }
 
     @Override
-    public void victoria(Casilla ganador, int[][] lineaGanadora) {
+    public void juegoGanado(Marca ganador, int[][] lineaGanadora) {
         System.out.println(String.format("%s ganó el juego con la linea (%d, %d), (%d,%d), (%d,%d)", ganador.toString(),
                 lineaGanadora[0][0], lineaGanadora[0][1], lineaGanadora[1][0], lineaGanadora[1][1], lineaGanadora[2][0],
                 lineaGanadora[2][1]));
         System.out.println("");
+    }
+
+    @Override
+    public void tableroMarcado(Marca marca, int x, int y) {
+        imprimirTablero(juego);
+    }
+
+    @Override
+    public void juegoTerminado() {
+        // TODO Auto-generated method stub
+
     }
 }

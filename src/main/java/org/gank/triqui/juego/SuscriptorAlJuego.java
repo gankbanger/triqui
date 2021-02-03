@@ -1,5 +1,7 @@
 package org.gank.triqui.juego;
 
 public interface SuscriptorAlJuego {
-    void victoria(Casilla ganador, int[][] lineaGanadora);
+    void tableroMarcado(Marca marca, int x, int y);
+    void juegoGanado(Marca ganador, int[][] lineaGanadora);
+    void juegoTerminado();
 }

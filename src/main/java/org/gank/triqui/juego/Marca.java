@@ -1,5 +1,5 @@
 package org.gank.triqui.juego;
 
-public enum Casilla {
+public enum Marca {
     X, O, VACIA;
 }

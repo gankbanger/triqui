@@ -8,10 +8,10 @@ import java.awt.Component;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.WindowConstants;
-import javax.swing.plaf.ColorUIResource;
 
-import org.gank.triqui.juego.Casilla;
+import org.gank.triqui.juego.Marca;
 import org.gank.triqui.juego.SuscriptorAlJuego;
 import org.gank.triqui.juego.Triqui;
 
@@ -58,7 +58,7 @@ public class TriquiWindows implements SuscriptorAlJuego {
 	}
 
 	@Override
-	public void victoria(Casilla ganador, int[][] lineaGanadora) {
+	public void juegoGanado(Marca ganador, int[][] lineaGanadora) {
 		for (Component component : frame.getContentPane().getComponents()) {
 			if (component instanceof BotonCasilla) {
 				BotonCasilla boton = (BotonCasilla) component;
@@ -89,12 +89,7 @@ public class TriquiWindows implements SuscriptorAlJuego {
 			this.addActionListener(event -> {
 				if (!juego.finJuego()) {
 					juego.marcar(this.columna, this.fila);
-					Casilla c = juego.obtenerCasilla(this.columna, this.fila);
-					if (c.equals(Casilla.X)) {
-						this.setText("X");
-					} else if (c.equals(Casilla.O)) {
-						this.setText("O");
-					}
+
 				} else {
 					juego.nuevoJuego();
 					for (Component component : this.getParent().getComponents()) {
@@ -107,5 +102,33 @@ public class TriquiWindows implements SuscriptorAlJuego {
 				}
 			});
 		}
+	}
+
+	@Override
+	public void tableroMarcado(Marca marca, int x, int y) {		
+		BotonCasilla boton = extracted(x, y);
+		if (boton != null) {
+			boton.setText(marca.equals(Marca.X)? "X" : "O");
+		}		
+	}
+
+	private BotonCasilla extracted(int x, int y) {
+		for (Component component : frame.getContentPane().getComponents()) {
+			if (component instanceof BotonCasilla) {
+				BotonCasilla boton = (BotonCasilla) component;
+				for (int l = 0; l < Triqui.DIMENSION_TABLERO; l++) {
+					if (boton.getFila() == y && boton.getColumna() == x) {
+						return boton;
+					}
+				}				
+			}
+		}
+		return null;
+	}
+
+	@Override
+	public void juegoTerminado() {
+		// TODO Auto-generated method stub
+
 	}
 }
