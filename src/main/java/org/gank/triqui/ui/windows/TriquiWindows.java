@@ -8,7 +8,6 @@ import java.awt.Component;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 import javax.swing.WindowConstants;
 
 import org.gank.triqui.juego.Marca;
@@ -128,6 +127,6 @@ public class TriquiWindows implements SuscriptorAlJuego {
 
 	@Override
 	public void juegoTerminado() {
-		// TODO Auto-generated method stub
+		// Nada que hacer, todo está en el event juegoGando
 	}
 }
