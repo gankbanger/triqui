@@ -84,9 +84,4 @@ public class TriquiCLI implements SuscriptorAlJuego {
     public void tableroMarcado(Marca marca, int x, int y) {
         imprimirTablero(juego);
     }
-
-    @Override
-    public void juegoTerminado() {
-        // No es necesario implementar
-    }
 }

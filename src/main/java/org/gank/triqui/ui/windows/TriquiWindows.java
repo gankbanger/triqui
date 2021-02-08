@@ -124,9 +124,4 @@ public class TriquiWindows implements SuscriptorAlJuego {
 		}
 		return null;
 	}
-
-	@Override
-	public void juegoTerminado() {
-		// Nada que hacer, todo está en el event juegoGando
-	}
 }
