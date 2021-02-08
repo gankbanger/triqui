@@ -30,11 +30,6 @@ public class TriquiTest {
             public void juegoGanado(Marca ganador, int[][] lineaGanadora) {
                 ultimoGanador = ganador;
             }
-
-            @Override
-            public void juegoTerminado() {
-                // Sin usar
-            }
         });
     }
 

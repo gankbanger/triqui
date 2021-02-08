@@ -56,9 +56,6 @@ public class Triqui {
                 this.siguienteTurno = this.siguienteTurno.equals(Marca.X) ? Marca.O : Marca.X;
             }
         }
-        if (this.finJuego()) {
-            this.suscriptores.forEach(SuscriptorAlJuego::juegoTerminado);
-        }
     }
 
     private void calcularGanador() {
