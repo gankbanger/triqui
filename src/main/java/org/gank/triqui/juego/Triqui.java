@@ -60,27 +60,13 @@ public class Triqui {
 
     private void calcularGanador() {
         for (int i = 0; i < DIMENSION_TABLERO; i++) {
-            if (!this.tablero[i][0].equals(Marca.VACIA) && this.tablero[i][0].equals(this.tablero[i][1])
-                    && this.tablero[i][0].equals(this.tablero[i][2])) {
-                this.ganador = this.tablero[i][0];
-                this.lineaGanadora[0][0] = i;
-                this.lineaGanadora[0][1] = 0;
-                this.lineaGanadora[1][0] = i;
-                this.lineaGanadora[1][1] = 1;
-                this.lineaGanadora[2][0] = i;
-                this.lineaGanadora[2][1] = 2;
-            }
-            if (!this.tablero[0][i].equals(Marca.VACIA) && this.tablero[0][i].equals(this.tablero[1][i])
-                    && this.tablero[0][i].equals(this.tablero[2][i])) {
-                this.ganador = this.tablero[0][i];
-                this.lineaGanadora[0][0] = 0;
-                this.lineaGanadora[0][1] = i;
-                this.lineaGanadora[1][0] = 1;
-                this.lineaGanadora[1][1] = i;
-                this.lineaGanadora[2][0] = 2;
-                this.lineaGanadora[2][1] = i;
-            }
+            victoriaHorizontal(i);
+            victoriaVertical(i);
         }
+        victoriaDiagonal();
+    }
+
+    private void victoriaDiagonal() {
         if (!this.tablero[0][0].equals(Marca.VACIA) && this.tablero[0][0].equals(this.tablero[1][1])
                 && this.tablero[0][0].equals(this.tablero[2][2])) {
             this.ganador = this.tablero[0][0];
@@ -100,6 +86,32 @@ public class Triqui {
             this.lineaGanadora[1][1] = 1;
             this.lineaGanadora[2][0] = 2;
             this.lineaGanadora[2][1] = 0;
+        }
+    }
+
+    private void victoriaVertical(int col) {
+        if (!this.tablero[0][col].equals(Marca.VACIA) && this.tablero[0][col].equals(this.tablero[1][col])
+                && this.tablero[0][col].equals(this.tablero[2][col])) {
+            this.ganador = this.tablero[0][col];
+            this.lineaGanadora[0][0] = 0;
+            this.lineaGanadora[0][1] = col;
+            this.lineaGanadora[1][0] = 1;
+            this.lineaGanadora[1][1] = col;
+            this.lineaGanadora[2][0] = 2;
+            this.lineaGanadora[2][1] = col;
+        }
+    }
+
+    private void victoriaHorizontal(int fila) {
+        if (!this.tablero[fila][0].equals(Marca.VACIA) && this.tablero[fila][0].equals(this.tablero[fila][1])
+                && this.tablero[fila][0].equals(this.tablero[fila][2])) {
+            this.ganador = this.tablero[fila][0];
+            this.lineaGanadora[0][0] = fila;
+            this.lineaGanadora[0][1] = 0;
+            this.lineaGanadora[1][0] = fila;
+            this.lineaGanadora[1][1] = 1;
+            this.lineaGanadora[2][0] = fila;
+            this.lineaGanadora[2][1] = 2;
         }
     }
 
