@@ -7,9 +7,9 @@
 	<name>triqui</name>
 	<description>Juego triqui</description>
 	<properties>
-		<java.version>14</java.version>
-		<maven.compiler.source>14</maven.compiler.source>
-		<maven.compiler.target>14</maven.compiler.target>
+		<java.version>11</java.version>
+		<maven.compiler.source>11</maven.compiler.source>
+		<maven.compiler.target>11</maven.compiler.target>
 		<sonar.projectKey>gankbanger_triqui</sonar.projectKey>
 		<sonar.organization>gankbanger</sonar.organization>
 		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
