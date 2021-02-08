@@ -116,4 +116,20 @@ public class TriquiTest {
         assertTrue(triqui.finJuego());
         assertEquals(Marca.X, this.ultimoGanador);
     }
+
+    @Test
+    public void testFinDeJuegoSinGanador() {
+        triqui.marcar(0, 0);
+        triqui.marcar(0, 1);
+        triqui.marcar(0, 2);
+        triqui.marcar(1, 1);
+        triqui.marcar(1, 0);
+        triqui.marcar(1, 2);
+        triqui.marcar(2, 2);
+        triqui.marcar(2, 0);
+        triqui.marcar(2, 1);
+
+        assertTrue(triqui.finJuego());
+        assertEquals(Marca.VACIA, ultimoGanador);
+    }
 }
