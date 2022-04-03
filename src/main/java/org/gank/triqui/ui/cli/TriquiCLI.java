@@ -5,32 +5,28 @@ import java.util.Scanner;
 import org.gank.triqui.juego.Marca;
 import org.gank.triqui.juego.SuscriptorAlJuego;
 import org.gank.triqui.juego.Triqui;
+import org.gank.triqui.ui.Juego;
 
-public class TriquiCLI implements SuscriptorAlJuego {
+public class TriquiCLI implements SuscriptorAlJuego, Juego {
     private Triqui juego;
-
-    public Triqui getJuego() {
-        return juego;
-    }
 
     public TriquiCLI(Triqui juego) {
         this.juego = juego;
     }
-    public static void main(String[] args) {
-        TriquiCLI cli = new TriquiCLI(new Triqui());
-        cli.getJuego().inscribirseNotificacionesTurnos(cli);
+    public void run() {        
+        this.juego.inscribirseNotificacionesTurnos(this);
         boolean continuar = true;
 
         try (Scanner in = new Scanner(System.in)) {
-            imprimirTablero(cli.getJuego());
-            while (!cli.getJuego().finJuego() && continuar) {
-                jugarTurno(cli.getJuego(), in);
+            imprimirTablero(this.juego);
+            while (!this.juego.finJuego() && continuar) {
+                jugarTurno(this.juego, in);
                 
-                if (cli.getJuego().finJuego()) {
+                if (this.juego.finJuego()) {
                     continuar = continuarJugando(in);
                     if (continuar) {
-                        cli.getJuego().nuevoJuego();
-                        imprimirTablero(cli.getJuego());
+                        this.juego.nuevoJuego();
+                        imprimirTablero(this.juego);
                     }
                 }
             }

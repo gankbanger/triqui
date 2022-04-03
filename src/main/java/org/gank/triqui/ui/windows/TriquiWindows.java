@@ -13,25 +13,26 @@ import javax.swing.WindowConstants;
 import org.gank.triqui.juego.Marca;
 import org.gank.triqui.juego.SuscriptorAlJuego;
 import org.gank.triqui.juego.Triqui;
+import org.gank.triqui.ui.Juego;
 
 import lombok.Getter;
 
-public class TriquiWindows implements SuscriptorAlJuego {
+public class TriquiWindows implements SuscriptorAlJuego, Juego {
 
 	private static final Color VERDE_OSCURO = new Color(56, 128, 56);
 	private JFrame frame;
 	private Triqui juego;
 
-	public TriquiWindows(JFrame frame) {
-		juego = new Triqui();
-		this.frame = frame;
-
+	public TriquiWindows(Triqui juego) {
+		this.juego = juego;
 		juego.inscribirseNotificacionesTurnos(this);
-
-		this.inicializar();
 	}
 
-	private void inicializar() {
+	public void run() {
+		frame = new JFrame();
+		frame.setVisible(true);
+		frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+
 		frame.setTitle("Triqui");
 		frame.setSize(300, 300);
 
@@ -46,14 +47,6 @@ public class TriquiWindows implements SuscriptorAlJuego {
 		pane.add(new BotonCasilla(this.juego, 2, 0));
 		pane.add(new BotonCasilla(this.juego, 2, 1));
 		pane.add(new BotonCasilla(this.juego, 2, 2));
-
-	}
-
-	public static void main(String[] args) {
-		JFrame frame = new JFrame();
-		new TriquiWindows(frame);
-		frame.setVisible(true);
-		frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 	}
 
 	@Override
