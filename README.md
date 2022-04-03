@@ -1,2 +1,2 @@
 # triqui
-Juego de triqui 
+Juego de triqui (linea tres)
